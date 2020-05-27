@@ -149,7 +149,7 @@ RCT_EXPORT_METHOD(showActionSheetWithOptions:(NSDictionary *)options
     item.target = self;
     [menu addItem:item];
   }
-
+  
   RCTPlatformView *view = nil;
   if (anchorViewTag) {
     view = [self.bridge.uiManager viewForReactTag:anchorViewTag];
