@@ -47,23 +47,20 @@ jobs:
         condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
       - task: Npm@1
+        displayName: "Publish latest react-native-macos to npmjs.org"
+        inputs:
+          command: 'custom'
+          customCommand: publish --tag $(Build.SourceBranchName)
+          publishEndpoint: 'npmjs'
+        condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+      - task: Npm@1
         displayName: "Publish stable react-native-macos to npmjs.org"
         inputs:
           command: 'custom'
           customCommand: publish --tag $(Build.SourceBranchName)
           publishEndpoint: 'npmjs'
         condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
-
-      - task: CmdLine@2
-        displayName: 'Tag published release'
-        inputs:
-          script: node .ado/gitTagRelease.js
-        env:
-          BUILD_STAGINGDIRECTORY: $(Build.StagingDirectory)
-          BUILD_SOURCEBRANCH: $(Build.SourceBranch)
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-          githubApiToken: $(githubApiToken)
-
 
   - job: RNGithubOfficePublish
     displayName: React-Native GitHub Publish to Office
