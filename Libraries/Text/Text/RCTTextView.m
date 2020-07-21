@@ -16,6 +16,7 @@
 #import <React/RCTAssert.h> // TODO(macOS ISS#2323203)
 #import <React/RCTUtils.h>
 #import <React/UIView+React.h>
+#import <React/RCTFocusChangeEvent.h> // TODO(OSS Candidate ISS#2710739)
 
 #import <React/RCTTextShadowView.h>
 
@@ -28,10 +29,25 @@
   UILongPressGestureRecognizer *_longPressGestureRecognizer;
 #endif // TODO(macOS ISS#2323203)
 
+<<<<<<< HEAD
+=======
+  CAShapeLayer *_highlightLayer;
+  RCTEventDispatcher *_eventDispatcher; // TODO(OSS Candidate ISS#2710739)
+>>>>>>> d44af5a1c... Fix onFocus/onBlur event bubbling in 0.60 stable (#509)
   NSArray<RCTUIView *> *_Nullable _descendantViews; // TODO(macOS ISS#3536887)
   NSTextStorage *_Nullable _textStorage;
   CGRect _contentFrame;
 }
+
+// [TODO(OSS Candidate ISS#2710739)
+- (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
+{
+  if ((self = [self initWithFrame:CGRectZero])) {
+    _eventDispatcher = eventDispatcher;
+  }
+  return self;
+}
+// ]TODO(OSS Candidate ISS#2710739)
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -349,6 +365,31 @@
     }
   }
 }
+
+- (BOOL)becomeFirstResponder
+{
+  if (![super becomeFirstResponder]) {
+    return NO;
+  }
+
+  // If we've gained focus, notify listeners
+  [_eventDispatcher sendEvent:[RCTFocusChangeEvent focusEventWithReactTag:self.reactTag]];
+
+  return YES;
+}
+
+- (BOOL)resignFirstResponder
+{
+  if (![super resignFirstResponder]) {
+    return NO;
+  }
+
+  // If we've lost focus, notify listeners
+  [_eventDispatcher sendEvent:[RCTFocusChangeEvent blurEventWithReactTag:self.reactTag]];
+
+  return YES;
+}
+
 #endif // ]TODO(macOS ISS#2323203)
 
 - (BOOL)canBecomeFirstResponder
