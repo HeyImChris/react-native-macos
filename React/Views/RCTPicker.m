@@ -26,10 +26,10 @@
 #if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     _color = [RCTUIColor blackColor]; // TODO(OSS Candidate ISS#2710739)
     _font = [UIFont systemFontOfSize:21]; // TODO: selected title default should be 23.5
-#else // [TODO(macOS ISS#2323203)
+#else // [TODO(macOS GH#533)
     _color = [NSColor labelColor];
-    _font = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-#endif // ]TODO(macOS ISS#2323203)
+    [self setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
+#endif // ]TODO(macOS GH#533)
     _selectedIndex = NSNotFound;
     _textAlign = NSTextAlignmentCenter;
     self.delegate = self;
@@ -64,7 +64,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
     NSMutableDictionary *mutableItem = item.mutableCopy;
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:[RCTConvert NSString:item[@"label"]]
                                                                      attributes:@{NSForegroundColorAttributeName : [RCTConvert UIColor:item[@"textColor"]] ?: _color,
-                                                                                  NSFontAttributeName: _font,
+                                                                                  NSFontAttributeName: [self font] /* Use the font prop instead of the ivar so it's compatible on iOS and macOS TODO(OSS Candidate ISS#2710739) */,
                                                                                   NSParagraphStyleAttributeName: paragraphStyle}];
     NSSize size = attrString.size;
     if (size.height > maxHeight) {
