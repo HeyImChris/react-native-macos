@@ -27,7 +27,6 @@
     _color = [RCTUIColor blackColor]; // TODO(OSS Candidate ISS#2710739)
     _font = [UIFont systemFontOfSize:21]; // TODO: selected title default should be 23.5
 #else // [TODO(macOS GH#533)
-    _color = [NSColor labelColor];
     [self setFont:[NSFont systemFontOfSize:[NSFont systemFontSize]]];
 #endif // ]TODO(macOS GH#533)
     _selectedIndex = NSNotFound;

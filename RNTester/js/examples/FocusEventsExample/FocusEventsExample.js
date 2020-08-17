@@ -12,13 +12,8 @@
 
 var React = require('react');
 var ReactNative = require('react-native');
-<<<<<<< HEAD:RNTester/js/examples/FocusEventsExample/FocusEventsExample.js
 import {Platform} from 'react-native';
 var {StyleSheet, Text, View, TextInput} = ReactNative;
-=======
-import Platform from '../../Libraries/Utilities/Platform';
-var {Button, StyleSheet, Text, View, TextInput} = ReactNative;
->>>>>>> d44af5a1c... Fix onFocus/onBlur event bubbling in 0.60 stable (#509):RNTester/js/FocusEventsExample.js
 
 type State = {
   eventStream: string,

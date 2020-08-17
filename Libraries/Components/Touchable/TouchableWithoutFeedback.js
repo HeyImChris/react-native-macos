@@ -351,11 +351,8 @@ const TouchableWithoutFeedback = ((createReactClass({
       onDragEnter: this.props.onDragEnter,
       onDragLeave: this.props.onDragLeave,
       onDrop: this.props.onDrop,
-<<<<<<< HEAD
-=======
       onFocus: this.props.onFocus,
       onBlur: this.props.onBlur,
->>>>>>> d44af5a1c... Fix onFocus/onBlur event bubbling in 0.60 stable (#509)
       draggedTypes: this.props.draggedTypes, // ]TODO(macOS ISS#2323203)
       children,
     });

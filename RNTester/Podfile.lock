@@ -378,8 +378,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2bf56de39dc7e153b4f1637e0f4874f2591fc55a
 
-<<<<<<< HEAD
-COCOAPODS: 1.9.1
-=======
 COCOAPODS: 1.9.3
->>>>>>> d44af5a1c... Fix onFocus/onBlur event bubbling in 0.60 stable (#509)

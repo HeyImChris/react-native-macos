@@ -166,7 +166,7 @@ RCT_EXPORT_METHOD(showActionSheetWithOptions:(NSDictionary *)options
     location = [NSEvent mouseLocation];
   }
   [menu popUpMenuPositioningItem:menu.itemArray.firstObject atLocation:location inView:view];
-#endif // ]TODO(macOS ISS#2323203)
+#endif // ]TODO(macOS ISS#2323203)  #endif // ]TODO(macOS ISS#2323203)
 }
 
 RCT_EXPORT_METHOD(showShareActionSheetWithOptions:(NSDictionary *)options

@@ -29,11 +29,8 @@
   UILongPressGestureRecognizer *_longPressGestureRecognizer;
 #endif // TODO(macOS ISS#2323203)
 
-<<<<<<< HEAD
-=======
   CAShapeLayer *_highlightLayer;
   RCTEventDispatcher *_eventDispatcher; // TODO(OSS Candidate ISS#2710739)
->>>>>>> d44af5a1c... Fix onFocus/onBlur event bubbling in 0.60 stable (#509)
   NSArray<RCTUIView *> *_Nullable _descendantViews; // TODO(macOS ISS#3536887)
   NSTextStorage *_Nullable _textStorage;
   CGRect _contentFrame;
