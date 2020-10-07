@@ -123,7 +123,7 @@ continueUserActivity:(NSUserActivity *)userActivity
 
 - (void)handleOpenURLNotification:(NSNotification *)notification
 {
-#if TARGET_OS_OSX // TODO: https://github.com/microsoft/react-native-macos/issues/632
+#if !TARGET_OS_OSX // TODO: https://github.com/microsoft/react-native-macos/issues/632
   // foreground top level window, need to grab it like this, because [NSApp mainWindow] returns nil when the app is hidden
   // and another app is maximized
   [NSApp activateIgnoringOtherApps:YES];
@@ -189,7 +189,7 @@ RCT_EXPORT_METHOD(openURL:(NSURL *)URL
     }
 #endif
   }
-#endif // TODO: https://github.com/microsoft/react-native-macos/issues/632
+#endif // !TARGET_OS_OSX
 }
 
 RCT_EXPORT_METHOD(canOpenURL:(NSURL *)URL
@@ -243,7 +243,7 @@ RCT_EXPORT_METHOD(getInitialURL:(RCTPromiseResolveBlock)resolve
     }
   }
   resolve(RCTNullIfNil(initialURL.absoluteString));
-#endif // TODO: https://github.com/microsoft/react-native-macos/issues/632
+#endif // !TARGET_OS_OSX
 }
 
 RCT_EXPORT_METHOD(openSettings:(RCTPromiseResolveBlock)resolve
@@ -270,7 +270,7 @@ RCT_EXPORT_METHOD(openSettings:(RCTPromiseResolveBlock)resolve
    }
 #endif
   }
-#endif // TODO: https://github.com/microsoft/react-native-macos/issues/632
+#endif // !TARGET_OS_OSX
 }
 
 RCT_EXPORT_METHOD(sendIntent:(NSString *)action
